@@ -1,0 +1,40 @@
+<!-- https://www.notion.so/Front-end-7c8a1a9a6df547058f1473f899a3b9c4 -->
+<!-- https://www.figma.com/file/Byw4X5etg8VCmezueyhzkC/?viewer=1&node-id= -->
+<!-- https://codepen.io/ -->
+<!-- https://www.notion.so/Back-end-a5747fd6bfa34e799e6e0ded51f5ec63 -->
+
+{% extends "layout.html" %}}
+
+{% set pageId = "page-home" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/modal.css">
+{% endblock styles %}
+
+{% block content %}
+    <div class="content">
+        <header>
+            <img src="/assets/logo.svg" alt="">
+            <a href="/create-point">
+                <span></span> Cadastre um ponto de coleta
+            </a>
+        </header>
+
+        <main>
+            <h1>{{ title }}</h1>
+
+            <p>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</p>
+
+            <a href="#"><span></span><strong>Pesquisar ponto de coleta</strong></a>
+        </main>
+    </div>
+{% endblock content %}
+
+{% block modal %}
+    {% include "partials/modal.html" %}
+{% endblock modal %}
+
+{% block scripts %}
+    <script src="/scripts/index.js"></script>
+{% endblock scripts %}
