@@ -2,14 +2,14 @@ function populateUFs() {
     const ufselect = document.querySelector("select[name=uf]")
 
     fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
-    .then( res => res.json() )
-    .then( states => {
+        .then(res => res.json())
+        .then(states => {
 
-        for ( const state of states ) {
-            ufselect.innerHTML += `<option value="${state.id}">${state.nome}</option>`
-        }
-                  
-    } )
+            for (const state of states) {
+                ufselect.innerHTML += `<option value="${state.id}">${state.nome}</option>`
+            }
+
+        })
 }
 
 populateUFs()
@@ -30,16 +30,16 @@ function getCities(event) {
     cityselect.disabled = true
 
     fetch(url)
-    .then( res => res.json() )
-    .then( cities => {
-        
-        for ( const city of cities ) {
-            cityselect.innerHTML += `<option value="${city.nome}">${city.nome}</option>`
-        }
+        .then(res => res.json())
+        .then(cities => {
 
-        cityselect.disabled = false
-                  
-    } )
+            for (const city of cities) {
+                cityselect.innerHTML += `<option value="${city.nome}">${city.nome}</option>`
+            }
+
+            cityselect.disabled = false
+
+        })
 }
 
 
@@ -54,7 +54,7 @@ const itemsToCollect = document.querySelectorAll(".items-grid li")
 
 for (const item of itemsToCollect) {
     item.addEventListener("click", handleSelectedItem)
-   
+
 }
 
 const collectedItems = document.querySelector("input[name=items]")
@@ -70,34 +70,36 @@ function handleSelectedItem(event) {
 
     const itemId = itemLi.dataset.id
 
+    console.log('ITEM ID: ', itemId)
+
     // verificar se existem items selecionados,
     // se sim pegar os items selecionados
     //const alreadySelected = selectedItems.findIndex( function(item) {
-    const alreadySelected = selectedItems.findIndex( item => {
-        const itemFound = item == itemId 
+    const alreadySelected = selectedItems.findIndex(item => {
+        const itemFound = item == itemId
         return itemFound
     })
 
 
     // se ja estiver selecionado 
-    if( alreadySelected >= 0 ) {
+    if (alreadySelected >= 0) {
         // tirar da selecao
-        const filteredItems = selectedItems.filter( item => {
+        const filteredItems = selectedItems.filter(item => {
             const itemIsDifferent = item != itemId
-            return itemIsDifferent 
+            return itemIsDifferent
 
         })
 
         selectedItems = filteredItems
     } else {
-    // se nao tiver selecionad adicionar a selecao
+        // se nao tiver selecionad adicionar a selecao
         selectedItems.push(itemId)
     }
 
-    console.log(selectedItems)
+    console.log('selectedItems: ', selectedItems)
 
     // atualizar o campo escondindo com os items selecionados
     collectedItems.value = selectedItems
-    
+
 
 }
